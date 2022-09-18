@@ -42,4 +42,5 @@ dump.rdb
 /config/configuration.yml
 /config/google_client_credentials.json
 /db/schema.rb
+/public/images
 rspec.output.txt
