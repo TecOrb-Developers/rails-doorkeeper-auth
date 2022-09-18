@@ -15,7 +15,7 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: <%= ENV['BNPL_DB_DEVELOPMENT_USERNAME'] %>
   password: <%= ENV['BNPL_DB_DEVELOPMENT_PASSWORD'] %>
-  socket: /var/run/mysqld/mysqld.sock
+  socket: /tmp/mysql.sock
 
 development:
   <<: *default
