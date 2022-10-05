@@ -1,14 +1,15 @@
-# Secure rails application using doorkeeper authentication using JWT (JSON Web Token)
+## Secure rails application using doorkeeper authentication using JWT (JSON Web Token)
+
 Doorkeeper JWT adds JWT token support to the Doorkeeper OAuth library.
 
-## Required dependencies: 
+### Required dependencies: 
   * Ruby is installed (v 3.0.1)  
   * Rails is installed (v 6.1.4)  
   * MySQL is installed
   * Git is installed  
   * GitHub account is created
 
-## Major steps are followed to setup:
+### Major steps are followed to setup:
   * Setup a new Rails app
   * Database configuration setup (using MySQL)
   * Initialize a local repository using git
@@ -18,30 +19,39 @@ Doorkeeper JWT adds JWT token support to the Doorkeeper OAuth library.
   * Change README.md and documentation added
   * Code Commited and Pushed to GitHub repository
 
-# Create configuration.yml to setup required environment variables
+## Create configuration.yml to setup required environment variables
 	* Go to the config directory
 	* Create a new file with name configuration.yml
 
-## Required variables to define in configuration.yml
+### Required variables to define in configuration.yml
 Here are the variables we need to define in this file:
 
-BNPL_DB_DEVELOPMENT: development_db_name
+````
+DB_DEVELOPMENT_NAME: db_name_development
 
-BNPL_DB_DEVELOPMENT_USERNAME: development_db_username
+DB_DEVELOPMENT_USERNAME: test_user
 
-BNPL_DB_DEVELOPMENT_PASSWORD: development_db_password
+DB_DEVELOPMENT_PASSWORD: test_password
 
-BNPL_DB_PRODUCTION: production_db_name_xxx
+DB_PRODUCTION_NAME: db_name_production
 
-BNPL_DB_PRODUCTION_USERNAME: production_db_username_xxx
+DB_PRODUCTION_USERNAME: test_pro
 
-BNPL_DB_PRODUCTION_PASSWORD: production_db_password_xxx
+DB_PRODUCTION_PASSWORD: testing_password
 
-BNPL_DB_TEST: test_db_name
+DB_TEST_NAME: db_name_test
 
 JWT_SECRET: jwt_secret_strong_xxxxxxxxxxxxxxxxxxxxxxx
+````
 
-# Server-side configuration
+### Create a model User with any of auth gem for login (Devise/bcrypt)
+- We will create a User model to save user data.
+
+- We will use bcrypt gem for password authentication.  
+
+- Create a user via seed file so we can use same for login/logout etc 
+
+## Settingup Doorkeeper (Server-side configuration)
 
 ```
 # For making this application serve as an OAuth-Provider
@@ -52,7 +62,13 @@ gem 'doorkeeper'
 gem 'doorkeeper-jwt'
 ```
 
-**/config/initializers/inflections.rb**
+Complete the gem installation, please go through with the gem documentation here is a [link](https://github.com/doorkeeper-gem/doorkeeper-jwt) for the same.
+
+### Install doorkeeper and go through generated configurations files
+
+Below files are referenced from directly gem documentation. We have to configure these as per our requirement. We have changed some of the part in doorkeeper.rb and routes.rb so please go through the changes as well. You can compair these via gem documentation or default generated files after installation.
+
+#### /config/initializers/inflections.rb
 
 ```
 # Reference: http://107.170.16.7/activesupport-inflector-and-you/
@@ -61,7 +77,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 end
 ```
 
-**/config/initializers/doorkeeper.rb**
+#### /config/initializers/doorkeeper.rb 
 
 ```
 Doorkeeper.configure do
@@ -343,7 +359,7 @@ end
 
 ```
 
-**/config/routes.rb**
+#### /config/routes.rb
 
 ```
 Rails.application.routes.draw do
@@ -360,7 +376,7 @@ Rails.application.routes.draw do
   end
 ```
 
-**/app/controllers/oauth_protected/base_controller.rb**
+#### /app/controllers/oauth_protected/base_controller.rb
 
 ```
 module OAuthProtected
@@ -382,7 +398,7 @@ module OAuthProtected
 end
 ```
 
-**/app/controllers/oauth_protected/users_controller.rb**
+#### /app/controllers/oauth_protected/users_controller.rb
 
 ```
 module OAuthProtected
@@ -405,4 +421,81 @@ http://localhost:3000/oauth/applications
 * Redirect URI example for a Rails Client-app running on port 5000 and using Devise's Omniauthable module  
 
    http://localhost:5000/users/auth/doorkeeper/callback
-  
+
+
+## Doorkeeper Auth section endpoints 
+
+In this demo user is created via seed file. We are directly going to login user with his login details.
+
+#### Login (Issue access token)
+- You need to call POST /oauth/token with body mentioned below. We need to add grant_type and client id and secrets in the body with email and password. 
+
+- The way of passing client_id and client_secret as mentioned below body isn't recommended by the RFC however this will work. We have to pass these through encrypted headers. I will explain the secure way at bottom section.
+
+Request body:
+````
+{
+    "grant_type": "password",
+    "email": "jai@example.com",
+    "password": "0000000",
+    "client_id": "uZmSxDz1zznGyldoeo3zzxxxxxxxxxxxxxxxxxx",
+    "client_secret": "absxyMmgaQWD1xxxxxxxxxxxxxxxxxx"
+}
+````
+
+#### Use Refresh Token to issue a new access token
+- You need to call POST /oauth/token with body mentioned below. The only change is grant_type value.
+
+Request body:
+``````
+{
+    "grant_type": "refresh_token",
+    "refresh_token": "KL75Xrdxxxxxxxxxxxxxxxxxxxxx",
+    "client_id": "uZmSxDz1zznGyldoeo3zzxxxxxxxxxxxxxxxxxx",
+    "client_secret": "absxyMmgaQWD1xxxxxxxxxxxxxxxxxx"
+}
+
+``````
+
+#### Logout (Revoke an access token)
+- You need to call POST /token/revoke 
+
+- Key "token" value of access_token you wanna to revoke in body
+
+- Include authorization headers (**HTTP-Authrozation: Basic Base64(client_id:client_secret)**) to inform the server that this request is authorized to perform an action. 
+
+- Check below section to secure this data transmission
+
+
+#### Send client_id and client_secret in a secure way instead of body
+- Alternatively you could send client_id and client_secret via body params, but this method isn't recommended by the RFC. So here is another way you can pass your client data.
+
+- Don't forget that if the token you wanna to revoke was issued to some specific client - only this client could revoke the token (it's credentials must be used to authorize the request).
+
+Here is an Example:
+
+Suppose your client_id is xxxxxxxx1234 and client_secret is zzzzzzzz0987 so you can generate base64 basic token via:
+
+````
+data = "xxxxxxxx1234:zzzzzzzz0987"
+basic_auth = Base64.strict_encode64(data) 
+# returns: dVptU3hEejF6em5HeVZHR18ybWg2amNub1pZSWNHcW5xQy1DSm02SEtpVTphYnN4eU1tZ2FRV0QxV0dUTjExd29jYlBRWGJqTkFWYlRfSl9fYjE5TnZr
+````
+##### Request:
+
+`POST /token/revoke`
+
+Use (above generated) token in request headers:
+
+````
+{
+  "Authorization":  "Basic dVptU3hEejF6em5HeVZHR18ybWg2amNub1pZSWNHcW5xQy1DSm02SEtpVTphYnN4eU1tZ2FRV0QxV0dUTjExd29jYlBRWGJqTkFWYlRfSl9fYjE5TnZr"
+}
+````
+Body: 
+
+````
+{
+    "token": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJNeSBBcHAiLCJpYXQiOjE2NjQ5NjY3MTcsImp0aSI6IjQyMjhkNzE4LWMzYTQtNGI2My1hYjEwLTRhYWQxM2Q2NzFkZiIsInVzZXIiOnsiaWQiOjEsImVtYWlsIjoiamFpQHRlY29yYi5jbyJ9fQ.NqqCEoYC4E3D5xo3_VHQm_eW292jVQGFWM53MCozyk9XI8rErYE6dNxw0Ksai853X6hSLw9ujuapD2rX4XXaOQ"
+}
+````
