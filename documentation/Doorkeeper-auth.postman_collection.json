@@ -1,0 +1,911 @@
+{
+	"info": {
+		"_postman_id": "8ba76fa1-3a1c-4f10-9e47-6ff28fb8ae5b",
+		"name": "Doorkeeper-auth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6521205"
+	},
+	"item": [
+		{
+			"name": "Auths",
+			"item": [
+				{
+					"name": "Registrations",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJNeSBBcHAiLCJpYXQiOjE2MzgxOTI0MzYsImp0aSI6IjMxYjNiMjcwLTY4ZTAtNDlkZC05NWJmLTQ0MzU4MzEyMDk2NyIsInVzZXIiOnsiaWQiOjEsImVtYWlsIjoiamFpQHRlY29yYi5jbyJ9fQ.-HJkLys8CRx_IXudsFKuHxyoRNpm9cpOmwrgmOj7gzGxcDu02gLFB-jh3Pfa8dRPoTNMQ8CErMuvPl_s04Rw4A",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"test@yahoo.com\",\n    \"password\": \"123456\",\n    \"fname\": \"Jai\",\n    \"lname\": \"Rajput\",\n    \"country_code\": \"+91\",\n    \"mobile_number\": \"7834821711\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{bnpl}}/api/v1/registrations",
+							"host": [
+								"{{bnpl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"registrations"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Registration Failed",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJNeSBBcHAiLCJpYXQiOjE2MzgxOTI0MzYsImp0aSI6IjMxYjNiMjcwLTY4ZTAtNDlkZC05NWJmLTQ0MzU4MzEyMDk2NyIsInVzZXIiOnsiaWQiOjEsImVtYWlsIjoiamFpQHRlY29yYi5jbyJ9fQ.-HJkLys8CRx_IXudsFKuHxyoRNpm9cpOmwrgmOj7gzGxcDu02gLFB-jh3Pfa8dRPoTNMQ8CErMuvPl_s04Rw4A",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"test@yahoo.com\",\n    \"password\": \"123456\",\n    \"fname\": \"Jai\",\n    \"lname\": \"Rajput\",\n    \"country_code\": \"+91\",\n    \"mobile_number\": \"7834821711\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{bnpl}}/api/v1/registrations",
+									"host": [
+										"{{bnpl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"registrations"
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "strict-origin-when-cross-origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "X-Request-Id",
+									"value": "5f6d6f53-3c43-47b5-b5e0-6fa2ce918ab6"
+								},
+								{
+									"key": "X-Runtime",
+									"value": "0.281493"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "__profilin=p%3Dt; path=/; HttpOnly; SameSite=Lax"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": [\n        \"Mobile number has already been taken\",\n        \"Email is using a blacklisted domain, please choose a different email.\"\n    ]\n}"
+						},
+						{
+							"name": "Registration Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJNeSBBcHAiLCJpYXQiOjE2MzgxOTI0MzYsImp0aSI6IjMxYjNiMjcwLTY4ZTAtNDlkZC05NWJmLTQ0MzU4MzEyMDk2NyIsInVzZXIiOnsiaWQiOjEsImVtYWlsIjoiamFpQHRlY29yYi5jbyJ9fQ.-HJkLys8CRx_IXudsFKuHxyoRNpm9cpOmwrgmOj7gzGxcDu02gLFB-jh3Pfa8dRPoTNMQ8CErMuvPl_s04Rw4A",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"test@online.com\",\n    \"password\": \"123456\",\n    \"fname\": \"Jai\",\n    \"lname\": \"Rajput\",\n    \"country_code\": \"+91\",\n    \"mobile_number\": \"7834821712\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{bnpl}}/api/v1/registrations",
+									"host": [
+										"{{bnpl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"registrations"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "strict-origin-when-cross-origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, must-revalidate, private, max-age=0"
+								},
+								{
+									"key": "X-Request-Id",
+									"value": "2015d9d2-638d-40c2-9a3a-9f4d7f9527fb"
+								},
+								{
+									"key": "X-Runtime",
+									"value": "0.274939"
+								},
+								{
+									"key": "X-MiniProfiler-Original-Cache-Control",
+									"value": "max-age=0, private, must-revalidate"
+								},
+								{
+									"key": "X-MiniProfiler-Ids",
+									"value": "eipb9lich449dty2f0gu,x0p6355h52mxmwr5do7a,s6dgg2bvzsokf26pekrm,zslh9s5tsb6z1yp09bvf,k3diacdloo0i6cq4ut4,vh60je0jao2mdrh6m0o2,v7pphm09eum9swnl3hat,bbq48lq4wl02q0mjv276,c80b5b6zlzah90pome4o,9rcy0gibxc0h2hf7e97b,o4pkiz4knl1irk7n2yag,r49xfam9upc5uozotrax,lucvy019b4mrzbtajuw8,22ekxh5xw4wtczxfkrf7,rklqpod7781e3t13n5e0,w8aoc0882frikn3yvukr,dpn2nqavl60ij85guf0y,uv0pad39atnfbndjo278,8vai7wydk9k1bw0betgj,q7vkbmbw2yjfcxp6bozc"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "__profilin=p%3Dt; path=/; HttpOnly; SameSite=Lax"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"user\": {\n        \"id\": 5,\n        \"full_name\": \"Jai Rajput\",\n        \"contact_number\": \"+91 7834821712\",\n        \"joined_at\": \"September 2022\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"grant_type\": \"password\",\n    \"email\": \"jai@tecorb.co\",\n    \"password\": \"123456\",\n    \"client_id\": \"uZmSxDz1zznGyVGG_2mh6jcnoZYIcGqnqC-CJm6HKiU\",\n    \"client_secret\": \"absxyMmgaQWD1WGTN11wocbPQXbjNAVbT_J__b19Nvk\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{bnpl}}/oauth/token",
+							"host": [
+								"{{bnpl}}"
+							],
+							"path": [
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"grant_type\": \"password\",\n    \"email\": \"jai@tecorb.co\",\n    \"password\": \"123456\",\n    \"client_id\": \"uZmSxDz1zznGyVGG_2mh6jcnoZYIcGqnqC-CJm6HKiU\",\n    \"client_secret\": \"absxyMmgaQWD1WGTN11wocbPQXbjNAVbT_J__b19Nvk\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{bnpl}}/oauth/token",
+									"host": [
+										"{{bnpl}}"
+									],
+									"path": [
+										"oauth",
+										"token"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "strict-origin-when-cross-origin"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, must-revalidate, private, max-age=0"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "X-Request-Id",
+									"value": "321adee1-bf4b-46d9-aa6a-6aa2083bab21"
+								},
+								{
+									"key": "X-Runtime",
+									"value": "0.390660"
+								},
+								{
+									"key": "X-MiniProfiler-Original-Cache-Control",
+									"value": "no-store"
+								},
+								{
+									"key": "X-MiniProfiler-Ids",
+									"value": "5r9n0e5gg1720rckh6p4,mz8ns6bntwpl6kecvw36,nnj04aasna6rad6149dl,ri86skqnju4k3myiksfl,q7apx8th7qtxbcsobq8v,yvxgqdg1148jvnngcjnu,p9c76sbe0jwcr35voe8k,gsmusyhgasuzsh3jdd24,brf6tjx73civawoam4rl,rvp767mn08tgb8r2f77h,6ihjs08a11ggxgrkz2fk,gxwp2y47syahckcibwg8"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "__profilin=p%3Dt; path=/; HttpOnly; SameSite=Lax"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"access_token\": \"eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJNeSBBcHAiLCJpYXQiOjE2NjE3NzI5OTQsImp0aSI6ImQ5N2I0MzllLTJkMWQtNDNmYi05M2QzLTY5OGVkZDM5N2NlNyIsInVzZXIiOnsiaWQiOjEsImVtYWlsIjoiamFpQHRlY29yYi5jbyJ9fQ.sq0blztKfrxLAaXFR-6ys0OETwNj9wIyJok2J6POSHQs87QjRFAdZJ_FmxNXFIyd5SzIpLEDf-MjACn9uDR6vw\",\n    \"token_type\": \"Bearer\",\n    \"expires_in\": 7199,\n    \"refresh_token\": \"0ZDFKpDbn-jPFI8bNH5z5PFP9wi0NKoSkRloIjqMSEA\",\n    \"created_at\": 1661772994\n}"
+						},
+						{
+							"name": "Login Failed",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"grant_type\": \"password\",\n    \"email\": \"jai@tecorb.co\",\n    \"password\": \"1234567\",\n    \"client_id\": \"uZmSxDz1zznGyVGG_2mh6jcnoZYIcGqnqC-CJm6HKiU\",\n    \"client_secret\": \"absxyMmgaQWD1WGTN11wocbPQXbjNAVbT_J__b19Nvk\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{bnpl}}/oauth/token",
+									"host": [
+										"{{bnpl}}"
+									],
+									"path": [
+										"oauth",
+										"token"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "strict-origin-when-cross-origin"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "WWW-Authenticate",
+									"value": "Bearer realm=\"Doorkeeper\", error=\"invalid_grant\", error_description=\"The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "X-Request-Id",
+									"value": "eee1af1e-9641-47d8-bb1d-1b3b48b392fa"
+								},
+								{
+									"key": "X-Runtime",
+									"value": "0.277871"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "__profilin=p%3Dt; path=/; HttpOnly; SameSite=Lax"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"invalid_grant\",\n    \"error_description\": \"The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Use Refresh token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic dVptU3hEejF6em5HeVZHR18ybWg2amNub1pZSWNHcW5xQy1DSm02SEtpVTphYnN4eU1tZ2FRV0QxV0dUTjExd29jYlBRWGJqTkFWYlRfSl9fYjE5TnZr",
+								"type": "text",
+								"description": "Basic Base64(client_id:client_secret)"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"grant_type\": \"refresh_token\",\n    \"refresh_token\": \"64Y7rzY-M1ePzLSNF5FaQf-8BHds07LMj-PZstaImQg\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{bnpl}}/oauth/token",
+							"host": [
+								"{{bnpl}}"
+							],
+							"path": [
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Use Refresh token",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"grant_type\": \"refresh_token\",\n    \"refresh_token\": \"XXnO8up_PPVuK41XtGxAmAR-WIqhcL-9H2_lLMGMnPY\",\n    \"client_id\": \"uZmSxDz1zznGyVGG_2mh6jcnoZYIcGqnqC-CJm6HKiU\",\n    \"client_secret\": \"absxyMmgaQWD1WGTN11wocbPQXbjNAVbT_J__b19Nvk\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{bnpl}}/oauth/token",
+									"host": [
+										"{{bnpl}}"
+									],
+									"path": [
+										"oauth",
+										"token"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "strict-origin-when-cross-origin"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, must-revalidate, private, max-age=0"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "X-Request-Id",
+									"value": "3e867ff6-1975-4020-a810-cb91dd5b93e7"
+								},
+								{
+									"key": "X-Runtime",
+									"value": "0.054401"
+								},
+								{
+									"key": "X-MiniProfiler-Original-Cache-Control",
+									"value": "no-store"
+								},
+								{
+									"key": "X-MiniProfiler-Ids",
+									"value": "zslh9s5tsb6z1yp09bvf,k3diacdloo0i6cq4ut4,vh60je0jao2mdrh6m0o2,v7pphm09eum9swnl3hat,bbq48lq4wl02q0mjv276,c80b5b6zlzah90pome4o,9rcy0gibxc0h2hf7e97b,o4pkiz4knl1irk7n2yag,r49xfam9upc5uozotrax,lucvy019b4mrzbtajuw8,22ekxh5xw4wtczxfkrf7,rklqpod7781e3t13n5e0,w8aoc0882frikn3yvukr,dpn2nqavl60ij85guf0y,uv0pad39atnfbndjo278,8vai7wydk9k1bw0betgj,q7vkbmbw2yjfcxp6bozc,g7aku7x8dfx3nwz7eh6m,yytsi2nqi4npbz141msx,l2u602nfs0en28x9uaft"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "__profilin=p%3Dt; path=/; HttpOnly; SameSite=Lax"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"access_token\": \"eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJNeSBBcHAiLCJpYXQiOjE2NjQ0NjEwMTIsImp0aSI6ImQzOGJiMWM5LTQ3ZTktNDI0NS1iMWM0LTg0NDI4ZTlkMWFiYyIsInVzZXIiOnsiaWQiOjEsImVtYWlsIjoiamFpQHRlY29yYi5jbyJ9fQ.BP0FOINaf3P7r6YtI2csKpQ2bKhC2bRtm7yPHhI3puLYzwHdce9uab_32QX5qFttSQ08E_qCD9MZRtGzLgOVAA\",\n    \"token_type\": \"Bearer\",\n    \"expires_in\": 7199,\n    \"refresh_token\": \"CLVvUzcFdp5RM1aIELaRQ2uxewEhitZ_ecNSb3DIDWg\",\n    \"created_at\": 1664461012\n}"
+						},
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"grant_type\": \"refresh_token\",\n    \"refresh_token\": \"VvG8SSa-88b6AJorzMIJ7r0opASq-6uo_Z8uVwyV2G4\",\n    \"client_id\": \"4erZzUmrGUBrlHaVFPkMggywB8EhSpN78Y_3f3EvX7A\",\n    \"client_secret\": \"pCau4DvNvWuMJS3p3awp3C76eyEYHNtvpGiH9YzK8D4\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{bnpl}}/oauth/token",
+									"host": [
+										"{{bnpl}}"
+									],
+									"path": [
+										"oauth",
+										"token"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "strict-origin-when-cross-origin"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "WWW-Authenticate",
+									"value": "Bearer realm=\"Doorkeeper\", error=\"invalid_grant\", error_description=\"The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "X-Request-Id",
+									"value": "5ef2229f-98f6-4ec9-b381-a1b744cd90b1"
+								},
+								{
+									"key": "X-Runtime",
+									"value": "0.040236"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "__profilin=p%3Dt; path=/; HttpOnly; SameSite=Lax"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"invalid_grant\",\n    \"error_description\": \"The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic dVptU3hEejF6em5HeVZHR18ybWg2amNub1pZSWNHcW5xQy1DSm02SEtpVTphYnN4eU1tZ2FRV0QxV0dUTjExd29jYlBRWGJqTkFWYlRfSl9fYjE5TnZr",
+								"type": "text",
+								"description": "Basic Base64(client_id:client_secret)"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJNeSBBcHAiLCJpYXQiOjE2NjQ5NjY3MTcsImp0aSI6IjQyMjhkNzE4LWMzYTQtNGI2My1hYjEwLTRhYWQxM2Q2NzFkZiIsInVzZXIiOnsiaWQiOjEsImVtYWlsIjoiamFpQHRlY29yYi5jbyJ9fQ.NqqCEoYC4E3D5xo3_VHQm_eW292jVQGFWM53MCozyk9XI8rErYE6dNxw0Ksai853X6hSLw9ujuapD2rX4XXaOQ\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{bnpl}}/oauth/revoke",
+							"host": [
+								"{{bnpl}}"
+							],
+							"path": [
+								"oauth",
+								"revoke"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Logout",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJNeSBBcHAiLCJpYXQiOjE2NjQ0NTQ1MTYsImp0aSI6IjBkYzc0MDU2LWRlMmUtNDk5NS04OWNiLTQ4ZTVhYmQ1MDE0OCIsInVzZXIiOnsiaWQiOjEsImVtYWlsIjoiamFpQHRlY29yYi5jbyJ9fQ.2Wp_8ay0m_3LG-xIf7oflB9i-Nmo03mkmIZsGdVJRQWuQDCYt8WPFpq9ZC9EyPBtJOAOisx4lpb2kHhu_92eHg",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"token\": \"Bearer eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJNeSBBcHAiLCJpYXQiOjE2NjQ0NTQ1MTYsImp0aSI6IjBkYzc0MDU2LWRlMmUtNDk5NS04OWNiLTQ4ZTVhYmQ1MDE0OCIsInVzZXIiOnsiaWQiOjEsImVtYWlsIjoiamFpQHRlY29yYi5jbyJ9fQ.2Wp_8ay0m_3LG-xIf7oflB9i-Nmo03mkmIZsGdVJRQWuQDCYt8WPFpq9ZC9EyPBtJOAOisx4lpb2kHhu_92eHg\",\n    \"client_id\": \"uZmSxDz1zznGyVGG_2mh6jcnoZYIcGqnqC-CJm6HKiU\",\n    \"client_secret\": \"absxyMmgaQWD1WGTN11wocbPQXbjNAVbT_J__b19Nvk\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{bnpl}}/oauth/revoke",
+									"host": [
+										"{{bnpl}}"
+									],
+									"path": [
+										"oauth",
+										"revoke"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "strict-origin-when-cross-origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, must-revalidate, private, max-age=0"
+								},
+								{
+									"key": "X-Request-Id",
+									"value": "341b20e9-0a72-409d-a346-4d90032b418c"
+								},
+								{
+									"key": "X-Runtime",
+									"value": "0.010475"
+								},
+								{
+									"key": "X-MiniProfiler-Original-Cache-Control",
+									"value": "max-age=0, private, must-revalidate"
+								},
+								{
+									"key": "X-MiniProfiler-Ids",
+									"value": "s6dgg2bvzsokf26pekrm,zslh9s5tsb6z1yp09bvf,k3diacdloo0i6cq4ut4,vh60je0jao2mdrh6m0o2,v7pphm09eum9swnl3hat,bbq48lq4wl02q0mjv276,c80b5b6zlzah90pome4o,9rcy0gibxc0h2hf7e97b,o4pkiz4knl1irk7n2yag,r49xfam9upc5uozotrax,lucvy019b4mrzbtajuw8,22ekxh5xw4wtczxfkrf7,rklqpod7781e3t13n5e0,w8aoc0882frikn3yvukr,dpn2nqavl60ij85guf0y,uv0pad39atnfbndjo278,8vai7wydk9k1bw0betgj,q7vkbmbw2yjfcxp6bozc,g7aku7x8dfx3nwz7eh6m,yytsi2nqi4npbz141msx"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "__profilin=p%3Dt; path=/; HttpOnly; SameSite=Lax"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{}"
+						},
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJNeSBBcHAiLCJpYXQiOjE2MzgxODkzNDcsImp0aSI6IjVmNzU3MGZjLTc5MGEtNDI5MC1iNjc1LWM5NmNhNDI1MDFiNSIsInVzZXIiOnsiaWQiOjEsImVtYWlsIjoiamFpQHRlY29yYi5jbyJ9fQ.0qKdXDxa71WBhnbNuXwSd_BQuad9rEGEgCzszQBWmtpKIniv868LDMcDZhht8m_f_vOiHUmFWqbnUKGDM17tXQ\",\n    \"client_id\": \"uZmSxDz1zznGyVGG_2mh6jcnoZYIcGqnqC-CJm6HKiU\",\n    \"client_secret\": \"absxyMmgaQWD1WGTN11wocbPQXbjNAVbT_J__b19Nvk\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{bnpl}}/oauth/revoke",
+									"host": [
+										"{{bnpl}}"
+									],
+									"path": [
+										"oauth",
+										"revoke"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "strict-origin-when-cross-origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "X-Request-Id",
+									"value": "7cfcf01e-2cd8-4c20-8353-796bf225061d"
+								},
+								{
+									"key": "X-Runtime",
+									"value": "0.004410"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "__profilin=p%3Dt; path=/; HttpOnly; SameSite=Lax"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"unauthorized_client\",\n    \"error_description\": \"You are not authorized to revoke this token\"\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
