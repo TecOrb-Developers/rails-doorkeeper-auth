@@ -30,19 +30,19 @@ Doorkeeper JWT adds JWT token support to the Doorkeeper OAuth library.
 Here are the variables we need to define in this file:
 
 ````
-BNPL_DB_DEVELOPMENT: development_db_name
+DB_DEVELOPMENT_NAME: db_name_development
 
-BNPL_DB_DEVELOPMENT_USERNAME: development_db_username
+DB_DEVELOPMENT_USERNAME: test_user
 
-BNPL_DB_DEVELOPMENT_PASSWORD: development_db_password
+DB_DEVELOPMENT_PASSWORD: test_password
 
-BNPL_DB_PRODUCTION: production_db_name_xxx
+DB_PRODUCTION_NAME: db_name_production
 
-BNPL_DB_PRODUCTION_USERNAME: production_db_username_xxx
+DB_PRODUCTION_USERNAME: test_pro
 
-BNPL_DB_PRODUCTION_PASSWORD: production_db_password_xxx
+DB_PRODUCTION_PASSWORD: testing_password
 
-BNPL_DB_TEST: test_db_name
+DB_TEST_NAME: db_name_test
 
 JWT_SECRET: jwt_secret_strong_xxxxxxxxxxxxxxxxxxxxxxx
 ````
