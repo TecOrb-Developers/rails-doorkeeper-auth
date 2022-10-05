@@ -1,4 +1,5 @@
 ## Secure rails application using doorkeeper authentication using JWT (JSON Web Token)
+
 Doorkeeper JWT adds JWT token support to the Doorkeeper OAuth library.
 
 ### Required dependencies: 
@@ -420,7 +421,6 @@ http://localhost:3000/oauth/applications
 * Redirect URI example for a Rails Client-app running on port 5000 and using Devise's Omniauthable module  
 
    http://localhost:5000/users/auth/doorkeeper/callback
-
 
 
 ## Doorkeeper Auth section endpoints 
