@@ -1,14 +1,14 @@
-# Secure rails application using doorkeeper authentication using JWT (JSON Web Token)
+## Secure rails application using doorkeeper authentication using JWT (JSON Web Token)
 Doorkeeper JWT adds JWT token support to the Doorkeeper OAuth library.
 
-## Required dependencies: 
+### Required dependencies: 
   * Ruby is installed (v 3.0.1)  
   * Rails is installed (v 6.1.4)  
   * MySQL is installed
   * Git is installed  
   * GitHub account is created
 
-## Major steps are followed to setup:
+### Major steps are followed to setup:
   * Setup a new Rails app
   * Database configuration setup (using MySQL)
   * Initialize a local repository using git
@@ -18,13 +18,14 @@ Doorkeeper JWT adds JWT token support to the Doorkeeper OAuth library.
   * Change README.md and documentation added
   * Code Commited and Pushed to GitHub repository
 
-# Create configuration.yml to setup required environment variables
+## Create configuration.yml to setup required environment variables
 	* Go to the config directory
 	* Create a new file with name configuration.yml
 
-## Required variables to define in configuration.yml
+### Required variables to define in configuration.yml
 Here are the variables we need to define in this file:
 
+````
 BNPL_DB_DEVELOPMENT: development_db_name
 
 BNPL_DB_DEVELOPMENT_USERNAME: development_db_username
@@ -40,8 +41,16 @@ BNPL_DB_PRODUCTION_PASSWORD: production_db_password_xxx
 BNPL_DB_TEST: test_db_name
 
 JWT_SECRET: jwt_secret_strong_xxxxxxxxxxxxxxxxxxxxxxx
+````
 
-# Server-side configuration
+### Create a model User with any of auth gem for login (Devise/bcrypt)
+- We will create a User model to save user data.
+
+- We will use bcrypt gem for password authentication.  
+
+- Create a user via seed file so we can use same for login/logout etc 
+
+## Settingup Doorkeeper (Server-side configuration)
 
 ```
 # For making this application serve as an OAuth-Provider
@@ -52,7 +61,13 @@ gem 'doorkeeper'
 gem 'doorkeeper-jwt'
 ```
 
-**/config/initializers/inflections.rb**
+Complete the gem installation, please go through with the gem documentation here is a [link](https://github.com/doorkeeper-gem/doorkeeper-jwt) for the same.
+
+### Install doorkeeper and go through generated configurations files
+
+Below files are referenced from directly gem documentation. We have to configure these as per our requirement. We have changed some of the part in doorkeeper.rb and routes.rb so please go through the changes as well. You can compair these via gem documentation or default generated files after installation.
+
+#### /config/initializers/inflections.rb
 
 ```
 # Reference: http://107.170.16.7/activesupport-inflector-and-you/
@@ -61,7 +76,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 end
 ```
 
-**/config/initializers/doorkeeper.rb**
+#### /config/initializers/doorkeeper.rb 
 
 ```
 Doorkeeper.configure do
@@ -343,7 +358,7 @@ end
 
 ```
 
-**/config/routes.rb**
+#### /config/routes.rb
 
 ```
 Rails.application.routes.draw do
@@ -360,7 +375,7 @@ Rails.application.routes.draw do
   end
 ```
 
-**/app/controllers/oauth_protected/base_controller.rb**
+#### /app/controllers/oauth_protected/base_controller.rb
 
 ```
 module OAuthProtected
@@ -382,7 +397,7 @@ module OAuthProtected
 end
 ```
 
-**/app/controllers/oauth_protected/users_controller.rb**
+#### /app/controllers/oauth_protected/users_controller.rb
 
 ```
 module OAuthProtected
@@ -409,6 +424,8 @@ http://localhost:3000/oauth/applications
 
 
 ## Doorkeeper Auth section endpoints 
+
+In this demo user is created via seed file. We are directly going to login user with his login details.
 
 #### Login (Issue access token)
 - You need to call POST /oauth/token with body mentioned below. We need to add grant_type and client id and secrets in the body with email and password. 
