@@ -1,6 +1,8 @@
-## Secure rails application using doorkeeper authentication using JWT (JSON Web Token)
+## Secure rails application with 
+### - Doorkeeper authentication 
+### - JWT (JSON Web Token)
 
-Doorkeeper JWT adds JWT token support to the Doorkeeper OAuth library.
+Doorkeeper-JWT adds JWT token support to the Doorkeeper OAuth library.
 
 ### Required dependencies: 
   * Ruby is installed (v 3.0.1)  
